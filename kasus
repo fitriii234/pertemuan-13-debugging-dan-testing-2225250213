@@ -1,0 +1,57 @@
+def status_lulus(nilai):
+    """Nilai minimal 60 dinyatakan lulus."""
+    if nilai >= 60:
+        return "Lulus"
+    return "Tidak lulus"
+
+
+if __name__ == "__main__":
+    for nilai in [59, 60, 61, 75]:
+        print(f"Nilai {nilai}: {status_lulus(nilai)}")
+def rata_rata(data):
+    if not data:
+        raise ValueError("Data nilai tidak boleh kosong.")
+    return sum(data) / len(data)
+
+
+if __name__ == "__main__":
+    contoh = [[80, 90, 70], [100, 80], [75]]
+    for data in contoh:
+        print(f"Data: {data} -> rata-rata: {rata_rata(data):.2f}")
+from pathlib import Path
+
+
+def baca_nilai(path):
+    """Membaca satu nilai per baris; baris kosong diabaikan."""
+    hasil = []
+    try:
+        with Path(path).open("r", encoding="utf-8") as file:
+            for nomor_baris, baris in enumerate(file, start=1):
+                teks = baris.strip()
+                if not teks:
+                    continue
+                try:
+                    nilai = float(teks)
+                except ValueError:
+                    print(f"Baris {nomor_baris} diabaikan: bukan angka ({teks!r}).")
+                    continue
+                if 0 <= nilai <= 100:
+                    hasil.append(nilai)
+                else:
+                    print(f"Baris {nomor_baris} diabaikan: nilai di luar 0-100.")
+    except FileNotFoundError:
+        print(f"File tidak ditemukan: {path}")
+        return []
+    return hasil
+
+
+if __name__ == "__main__":
+    file_contoh = Path(__file__).parent / "nilai_contoh.txt"
+    print("Nilai terbaca:", baca_nilai(file_contoh))80
+60
+90
+70
+abc
+120
+
+
