@@ -1,0 +1,67 @@
+total = 0
+for i in range(1, 5):
+    sebelum = total
+    total += i
+    print(f"i={i}, total sebelum={sebelum}, total sesudah={total}")
+print("Hasil akhir:", total)
+def hitung_diskon(total, persen):
+    diskon = total * persen / 100
+    hasil_akhir = total - diskon
+    print(f"total={total}, persen={persen}, diskon={diskon}")
+    return hasil_akhir
+
+
+if __name__ == "__main__":
+    print("Total setelah diskon:", hitung_diskon(200_000, 10))
+def status_lulus(nilai):
+    if not isinstance(nilai, (int, float)):
+        raise TypeError("Nilai harus berupa angka.")
+    if not 0 <= nilai <= 100:
+        raise ValueError("Nilai harus berada pada rentang 0 sampai 100.")
+    return "Lulus" if nilai >= 60 else "Tidak lulus"
+
+
+def jalankan_test():
+    test_cases = [
+        ("Normal", 75, "Lulus"),
+        ("Batas", 60, "Lulus"),
+        ("Di bawah batas", 59, "Tidak lulus"),
+        ("Batas atas", 100, "Lulus"),
+    ]
+    for nama, input_nilai, expected in test_cases:
+        actual = status_lulus(input_nilai)
+        status = "PASS" if actual == expected else "FAIL"
+        print(f"{nama}: input={input_nilai}, expected={expected}, actual={actual} [{status}]")
+
+    for input_nilai in (120, -1, "abc"):
+        try:
+            status_lulus(input_nilai)
+        except (TypeError, ValueError) as error:
+            print(f"Input invalid {input_nilai!r}: PASS ({error})")
+        else:
+            print(f"Input invalid {input_nilai!r}: FAIL")
+
+
+if __name__ == "__main__":
+    jalankan_test()
+def hitung_total(data):
+    total = 0
+    for angka in data:  # Pasang breakpoint pada baris ini di VS Code
+        total += angka
+    return total
+
+
+def main():
+    angka = [10, 20, 30]
+    hasil = hitung_total(angka)  # Gunakan Step Into di sini
+    print("Total:", hasil)
+
+
+if __name__ == "__main__":
+    main()
+total = 1
+for i in range(1, 5):
+    sebelum = total
+    total *= i
+    print(f"i={i}, total sebelum={sebelum}, total sesudah={total}")
+print("Hasil:", total)
